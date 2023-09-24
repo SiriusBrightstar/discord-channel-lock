@@ -38,11 +38,13 @@ async def make_channel_read_only():
 
     holiday = is_market_closed_today()
     if holiday[0] == False:
-        read_only_role = channel.guild.get_role(int(cred['READ_ONLY_ROLE_ID']))
-        await channel.send(f'This Channel is locked till 15:30IST. Go to <#{int(cred["OPEN_CHANNEL_ID"])}>')
+        # read_only_role = channel.guild.get_role(int(cred['READ_ONLY_ROLE_ID']))
+        read_only_role_2 = channel.guild.get_role(int(cred['READ_ONLY_ROLE_ID_2']))
+        await channel.send(f'This Channel is locked till 15:30🔒.\nGo to <#{int(cred["OPEN_CHANNEL_ID"])}> or any other serious channels.')
         # Set read-only permission for the read-only role
-        await channel.set_permissions(read_only_role, read_messages=True, send_messages=False)
-        print(f"Channel {channel.name} is now read-only.")
+        # await channel.set_permissions(read_only_role, read_messages=True, send_messages=False)
+        await channel.set_permissions(read_only_role_2, read_messages=True, send_messages=False)
+        print(f"Channel {channel.name} is now read-only for {read_only_role_2.name}.")
     else:
         print('Today is a Holiday')
         await channel.send(f'Markets are Closed today\nHappy {holiday[1]}')
